@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 
 const Tile = ({ color, onPress }) => {
-  const tileColor = color || 'white'; // Default color is 'white' if not provided
+  const tileColor = color || 'white'; 
 
   return (
     <TouchableOpacity onPress={onPress}>

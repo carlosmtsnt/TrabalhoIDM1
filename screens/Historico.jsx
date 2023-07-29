@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const MATCH_HISTORY_KEY = '@match_history'; // Define the match history key for AsyncStorage
+const MATCH_HISTORY_KEY = '@match_history'; 
 
 const Historico = () => {
   const [matchHistory, setMatchHistory] = useState([]);

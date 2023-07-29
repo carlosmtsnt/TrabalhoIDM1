@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import Tile from './components/Tile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const MATCH_HISTORY_KEY = '@match_history'; // Define the match history key for AsyncStorage
+const MATCH_HISTORY_KEY = '@match_history'; 
 
 const Jogo = () => {
   const navigation = useNavigation();
@@ -18,9 +18,9 @@ const Jogo = () => {
     Array(7).fill(null),
   ]);
 
-  const [currentPlayer, setCurrentPlayer] = useState('red'); // 'red' or 'yellow', for example
+  const [currentPlayer, setCurrentPlayer] = useState('red'); 
   const [gameStatus, setGameStatus] = useState('playing');
-  const [matchNumber, setMatchNumber] = useState(1); // Initial match number
+  const [matchNumber, setMatchNumber] = useState(1); 
 
   useEffect(() => {
     const loadMatchHistory = async () => {
@@ -28,7 +28,7 @@ const Jogo = () => {
         const storedMatchHistory = await AsyncStorage.getItem(MATCH_HISTORY_KEY);
         if (storedMatchHistory !== null) {
           const matchHistory = JSON.parse(storedMatchHistory);
-          setMatchNumber(matchHistory.length + 1); // Set the match number based on the number of matches in the history
+          setMatchNumber(matchHistory.length + 1); 
         }
       } catch (error) {
         console.log('Error loading match history: ', error);
@@ -65,7 +65,7 @@ const Jogo = () => {
   };
 
   const checkWin = () => {
-    // Check horizontal win
+
     for (let r = 0; r < board.length; r++) {
       for (let c = 0; c <= board[0].length - 4; c++) {
         if (
@@ -80,7 +80,7 @@ const Jogo = () => {
       }
     }
 
-    // Check vertical win
+   
     for (let r = 0; r <= board.length - 4; r++) {
       for (let c = 0; c < board[0].length; c++) {
         if (
@@ -95,7 +95,7 @@ const Jogo = () => {
       }
     }
 
-    // Check diagonal (top-left to bottom-right) win
+  
     for (let r = 0; r <= board.length - 4; r++) {
       for (let c = 0; c <= board[0].length - 4; c++) {
         if (
@@ -110,7 +110,7 @@ const Jogo = () => {
       }
     }
 
-    // Check diagonal (top-right to bottom-left) win
+    
     for (let r = 0; r <= board.length - 4; r++) {
       for (let c = 3; c < board[0].length; c++) {
         if (
@@ -125,7 +125,7 @@ const Jogo = () => {
       }
     }
 
-    // Check for draw
+    
     if (board.every((row) => row.every((tile) => tile))) {
       handleGameEnd('draw');
     }
@@ -139,7 +139,7 @@ const Jogo = () => {
       const capitalizedWinner = winner.charAt(0).toUpperCase() + winner.slice(1);
       setGameStatus('win');
 
-      // Save the match history to AsyncStorage
+     
       const saveMatchHistory = async () => {
         try {
           const storedMatchHistory = await AsyncStorage.getItem(MATCH_HISTORY_KEY);
@@ -151,15 +151,15 @@ const Jogo = () => {
         }
       };
 
-      saveMatchHistory(); // Save the match history when the game ends
+      saveMatchHistory(); 
 
       Alert.alert('Game Over', `${capitalizedWinner} wins!`, [
         {
           text: 'OK',
           onPress: () => {
             resetGame();
-            setMatchNumber(matchNumber + 1); // Increment match number for the next match
-            navigation.navigate('Historico', { winner: capitalizedWinner }); // Pass the winner to Historico screen
+            setMatchNumber(matchNumber + 1); 
+            navigation.navigate('Historico', { winner: capitalizedWinner }); 
           },
         },
       ]);
@@ -186,7 +186,7 @@ const Jogo = () => {
           {row.map((color, colIndex) => (
             <Tile
               key={colIndex}
-              color={color || '#003366'} // Dark blue for non-empty tiles, even darker blue for empty tiles
+              color={color || '#003366'} 
               onPress={() => handleTilePress(colIndex)}
             />
           ))}
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#001f4d', // Dark blue for the board background
+    backgroundColor: '#001f4d', 
   },
   row: {
     flexDirection: 'row',
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   matchText: {
     fontSize: 20,
     marginTop: 20,
-    color: 'white', // Match number text color is white
+    color: 'white', 
   },
 });
 

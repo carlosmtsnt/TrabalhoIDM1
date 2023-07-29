@@ -12,7 +12,7 @@ const Home = () => {
 
 
   const handleHistorico = () => {
-    navigation.navigate('Historico'); // Navigates to the "Historico" screen
+    navigation.navigate('Historico');
   };
 
   return (
@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    marginBottom: 10, // Add margin at the bottom of the buttons
+    marginBottom: 10, 
   },
   spacing: {
-    height: 10, // Add some space between the buttons using an empty view with height
+    height: 10,
   },
 });
 
